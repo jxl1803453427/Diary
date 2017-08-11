@@ -9,6 +9,7 @@ import com.dd.diary.base.BaseActivity;
 import com.dd.diary.base.BaseFragment;
 import com.dd.diary.diary.ui.DiaryFragment;
 import com.dd.diary.personal.ui.PersonalFragment;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +96,23 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MobclickAgent.onProfileSignOff();
+    }
 }

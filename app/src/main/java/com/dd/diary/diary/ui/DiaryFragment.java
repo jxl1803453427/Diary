@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.dd.diary.R;
 import com.dd.diary.base.BaseFragment;
+import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by Administrator on 2017/8/6.
@@ -35,5 +36,17 @@ public class DiaryFragment extends BaseFragment{
     @Override
     protected void lazyLoad() {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart("diaryFragment");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd("diaryFragment");
     }
 }
